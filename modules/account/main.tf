@@ -141,7 +141,7 @@ resource "aws_security_group" "ecs_tasks" {
 ## -- ECS Service --
 
 resource "aws_ecs_service" "staging" {
-  name            = "opa"
+  name            = "opa-${var.account_no}"
   cluster         = var.ecs_cluster_arn
   task_definition = aws_ecs_task_definition.service.arn
   desired_count   = 0
