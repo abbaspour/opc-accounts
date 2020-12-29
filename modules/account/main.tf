@@ -178,3 +178,26 @@ resource "aws_ecs_service" "staging" {
     ]
   }
 }
+
+## Discovery
+resource "aws_service_discovery_service" "service_discovery" {
+  name = "lb${var.account_no}"
+
+  dns_config {
+    namespace_id = var.discovery_ns_arn
+
+    dns_records {
+      ttl  = 10
+      type = "A"
+    }
+
+    routing_policy = "MULTIVALUE"
+  }
+
+  /*
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+  */
+}
+
