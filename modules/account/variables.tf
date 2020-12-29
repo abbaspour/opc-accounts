@@ -22,3 +22,13 @@ variable "ecs_cluster_arn" {
   type = string
   description = "ecs cluster ARN"
 }
+
+variable "ecs_cluster_subnets" {
+  type = list(string)
+  description = "ECS subnets"
+}
+
+variable "ecs_sg_id" {
+  type = string
+  description = "ECS security group id"
+}

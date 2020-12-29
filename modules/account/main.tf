@@ -114,8 +114,32 @@ resource "aws_ecs_task_definition" "service" {
   }
 }
 
-## -- ECS Service --
+## -- SG --
 /*
+resource "aws_security_group" "ecs_tasks" {
+  name        = "ecs-tasks-sg"
+  description = "allow inbound access from the ALB only"
+  vpc_id = aws_vpc.aws-vpc.id
+
+  ingress {
+    protocol        = "tcp"
+    from_port       = 80
+    to_port         = 80
+    cidr_blocks     = ["0.0.0.0/0"]
+    //security_groups = [aws_security_group.lb.id]
+  }
+
+  egress {
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+*/
+
+## -- ECS Service --
+
 resource "aws_ecs_service" "staging" {
   name            = "opa"
   cluster         = var.ecs_cluster_arn
@@ -126,28 +150,27 @@ resource "aws_ecs_service" "staging" {
   platform_version = "LATEST"
 
   network_configuration {
-    security_groups  = [aws_security_group.ecs_tasks.id]
-    subnets          = data.aws_subnet_ids.default.ids
+    security_groups  = [var.ecs_sg_id]
+    subnets          = var.ecs_cluster_subnets
     assign_public_ip = false
     //assign_public_ip = true
   }
 
+/*
   load_balancer {
     target_group_arn = aws_lb_target_group.staging.arn
     container_name   = "opa-task"
     container_port   = 80
   }
+*/
 
+/*
   service_registries {
     registry_arn = aws_service_discovery_service.sd-account-100394707.arn
   }
+*/
 
-  depends_on = [aws_lb_listener.https_forward, aws_iam_role_policy_attachment.ecs_task_execution_role]
-
-  tags = {
-    Environment = var.app_environment
-    Application = var.app_name
-  }
+  depends_on = [/*aws_lb_listener.https_forward,*/ aws_iam_role_policy_attachment.ecs_task_execution_role]
 
   lifecycle {
     ignore_changes = [
@@ -155,4 +178,3 @@ resource "aws_ecs_service" "staging" {
     ]
   }
 }
-*/
