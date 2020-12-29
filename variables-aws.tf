@@ -19,7 +19,7 @@ variable "ecs_sg_id" {
   description = "ECS security group id"
 }
 
-variable "discovery_ns_arn" {
+variable "discovery_ns_id" {
   type = string
   description = "Service discovery DNS namespace"
 }

@@ -184,7 +184,7 @@ resource "aws_service_discovery_service" "service_discovery" {
   name = "lb${var.account_no}"
 
   dns_config {
-    namespace_id = var.discovery_ns_arn
+    namespace_id = var.discovery_ns_id
 
     dns_records {
       ttl  = 10

@@ -7,6 +7,6 @@ module "opal_account-1234" {
   ecs_cluster_arn = "arn:aws:ecs:ap-southeast-2:377258293252:cluster/opa-ecs-cluster"
   ecs_cluster_subnets = var.ecs_cluster_subnets
   ecs_sg_id = var.ecs_sg_id
-  discovery_ns_arn = var.discovery_ns_arn
+  discovery_ns_id = var.discovery_ns_id
 }
 
