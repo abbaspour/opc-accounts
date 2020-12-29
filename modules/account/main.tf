@@ -55,18 +55,6 @@ data "aws_iam_policy_document" "ecs_task_role" {
       identifiers = ["ecs-tasks.amazonaws.com"]
     }
   }
-  /*
-  statement {
-    sid = ""
-    effect = "Allow"
-    actions = [
-      "s3:GetObject"
-    ]
-    resources = [
-      "arn:aws:s3:::${var.policy_bucket}/${var.account_no}/*"
-    ]
-  }
-  */
 }
 
 resource "aws_iam_role" "ecs_task_role" {
@@ -96,3 +84,75 @@ resource "aws_iam_role_policy_attachment" "task_s3" {
   role       = aws_iam_role.ecs_task_role.name
   policy_arn = aws_iam_policy.s3_policy.arn
 }
+
+
+## -- ECS Task --
+data "template_file" "opa_app_task" {
+  template = file("${path.module}/opa-task-def.json.tpl")
+  vars = {
+    //aws_ecr_repository = aws_ecr_repository.repo.repository_url
+    account_no         = var.account_no
+    tag                = "latest"
+    aws_region         = var.region
+    s3_bucket          = var.policy_bucket
+    status_api_url     = var.status_api_url
+  }
+}
+
+resource "aws_ecs_task_definition" "service" {
+  family                   = "opa-task-${var.account_no}"
+  network_mode             = "awsvpc"
+  execution_role_arn       = aws_iam_role.ecs_exec_role.arn
+  task_role_arn            = aws_iam_role.ecs_task_role.arn
+  cpu                      = 256
+  memory                   = 512
+  requires_compatibilities = ["FARGATE"]
+  container_definitions    = data.template_file.opa_app_task.rendered
+
+  tags = {
+    Environment = "staging"
+  }
+}
+
+## -- ECS Service --
+/*
+resource "aws_ecs_service" "staging" {
+  name            = "opa"
+  cluster         = var.ecs_cluster_arn
+  task_definition = aws_ecs_task_definition.service.arn
+  desired_count   = 0
+  launch_type     = "FARGATE"
+  //platform_version = "1.4.0"
+  platform_version = "LATEST"
+
+  network_configuration {
+    security_groups  = [aws_security_group.ecs_tasks.id]
+    subnets          = data.aws_subnet_ids.default.ids
+    assign_public_ip = false
+    //assign_public_ip = true
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.staging.arn
+    container_name   = "opa-task"
+    container_port   = 80
+  }
+
+  service_registries {
+    registry_arn = aws_service_discovery_service.sd-account-100394707.arn
+  }
+
+  depends_on = [aws_lb_listener.https_forward, aws_iam_role_policy_attachment.ecs_task_execution_role]
+
+  tags = {
+    Environment = var.app_environment
+    Application = var.app_name
+  }
+
+  lifecycle {
+    ignore_changes = [
+      desired_count
+    ]
+  }
+}
+*/
