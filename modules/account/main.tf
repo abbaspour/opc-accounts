@@ -111,6 +111,7 @@ resource "aws_ecs_task_definition" "service" {
 
   tags = {
     Environment = "staging"
+    Account = var.account_no
   }
 }
 
@@ -170,7 +171,7 @@ resource "aws_ecs_service" "staging" {
   }
 */
 
-  depends_on = [/*aws_lb_listener.https_forward,*/ aws_iam_role_policy_attachment.ecs_task_execution_role]
+  depends_on = [/*aws_lb_listener.https_forward,*/ aws_iam_role_policy_attachment.ecs_task_execution_role, aws_cloudwatch_log_group.log-group]
 
   lifecycle {
     ignore_changes = [
@@ -201,3 +202,12 @@ resource "aws_service_discovery_service" "service_discovery" {
   */
 }
 
+## Log
+resource "aws_cloudwatch_log_group" "log-group" {
+  name = "opa-${var.account_no}"
+  retention_in_days = 3
+
+  tags = {
+    Account = var.account_no
+  }
+}
