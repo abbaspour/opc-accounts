@@ -9,6 +9,16 @@ variable "policy_bucket" {
   type = string
 }
 
+variable "status_api_url" {
+  type = string
+  description = "status api url"
+}
+
+variable "ecs_cluster_arn" {
+  type = string
+  description = "ecs cluster arn"
+}
+
 variable "ecs_cluster_subnets" {
   type = list(string)
   description = "ECS subnets"
