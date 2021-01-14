@@ -165,11 +165,9 @@ resource "aws_ecs_service" "staging" {
   }
 */
 
-/*
   service_registries {
-    registry_arn = aws_service_discovery_service.sd-account-100394707.arn
+    registry_arn = aws_service_discovery_service.service_discovery.arn
   }
-*/
 
   depends_on = [/*aws_lb_listener.https_forward,*/ aws_iam_role_policy_attachment.ecs_task_execution_role, aws_cloudwatch_log_group.log-group]
 
