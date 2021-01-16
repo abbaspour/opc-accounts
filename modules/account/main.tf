@@ -64,13 +64,14 @@ resource "aws_iam_role" "ecs_task_role" {
 
 data "aws_iam_policy_document" "s3_data_bucket_policy" {
   statement {
-    sid = ""
+    sid = "1"
     effect = "Allow"
     actions = [
       "s3:GetObject"
     ]
     resources = [
-      "arn:aws:s3:::${var.policy_bucket}/${var.account_no}/*"
+      //"arn:aws:s3:::${var.policy_bucket}/${var.account_no}/*"
+      "arn:aws:s3:::${var.policy_bucket}/*" // TODO: fix prefix as `condition`. Optionally use username
     ]
   }
 }
