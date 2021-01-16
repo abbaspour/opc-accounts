@@ -36,11 +36,12 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
 
 ## -- Default Policy Object --
 ## todo: publish to update-policy SQS rather than creating file manually
+## prevent overwrite
 resource "aws_s3_bucket_object" "default-bundle" {
   bucket = var.policy_bucket
   key    = "${var.account_no}/bundle.tar.gz"
   source = "${path.module}/bundle.tar.gz"
-  etag = filemd5("${path.module}/bundle.tar.gz")
+  #etag = filemd5("${path.module}/bundle.tar.gz")
 }
 
 ## Task Role
