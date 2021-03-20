@@ -39,7 +39,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
 ## prevent overwrite
 resource "aws_s3_bucket_object" "default-bundle" {
   bucket = var.policy_bucket
-  key    = "${var.account_no}/bundle.tar.gz"
+  key    = "${var.account_no}/bundles/bundle.tar.gz"
   source = "${path.module}/bundle.tar.gz"
   #etag = filemd5("${path.module}/bundle.tar.gz")
 }

@@ -17,7 +17,7 @@
         "--set", "services.s3.credentials.s3_signing.metadata_credentials.aws_region=${aws_region}",
         "--set", "services.sqs.url=${status_api_url}",
         "--set", "bundles.root.service=s3",
-        "--set", "bundles.root.resource=/${account_no}/bundle.tar.gz",
+        "--set", "bundles.root.resource=/${account_no}/bundles/bundle.tar.gz",
         "--set", "bundles.root.persist=false",
         "--set", "bundles.root.polling.min_delay_seconds=600",
         "--set", "bundles.root.polling.max_delay_seconds=1200",
