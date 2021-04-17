@@ -220,11 +220,19 @@ resource "aws_lb_target_group" "target-group" {
   target_type = "ip"
 }
 
+resource "random_integer" "priority" {
+  min = 1
+  max = 50000
+  keepers = {
+    # Generate a new integer each time we switch to a new listener ARN
+    listener_arn = var.listener_arn
+  }
+}
+
 resource "aws_lb_listener_rule" "alb-listener" {
 
   listener_arn = var.listener_arn
-  # priority" must be in the range 1-50000 for normal rule or 99999 for default rule
-  priority     = var.account_no % 100000000
+  priority     = random_integer.priority.result
 
   action {
     type             = "forward"
