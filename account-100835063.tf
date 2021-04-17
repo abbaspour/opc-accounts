@@ -8,4 +8,6 @@ module "account-100835063" {
   ecs_cluster_subnets = var.ecs_cluster_subnets
   ecs_sg_id = var.ecs_sg_id
   discovery_ns_id = var.discovery_ns_id
+  vpc_id = var.vpc_id
+  listener_arn = var.listener_arn
 }

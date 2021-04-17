@@ -33,3 +33,13 @@ variable "discovery_ns_id" {
   type = string
   description = "Service discovery DNS namespace"
 }
+
+variable "vpc_id" {
+  type = string
+  description = "VPC id"
+}
+
+variable "listener_arn" {
+  type = string
+  description = "ALB listener arn"
+}

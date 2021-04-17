@@ -160,13 +160,11 @@ resource "aws_ecs_service" "staging" {
     //assign_public_ip = true
   }
 
-/*
   load_balancer {
-    target_group_arn = aws_lb_target_group.staging.arn
-    container_name   = "opa-task"
+    target_group_arn = aws_lb_target_group.target-group.arn
+    container_name   = "container-${var.account_no}"
     container_port   = 80
   }
-*/
 
   service_registries {
     registry_arn = aws_service_discovery_service.service_discovery.arn
@@ -210,5 +208,32 @@ resource "aws_cloudwatch_log_group" "log-group" {
 
   tags = {
     Account = var.account_no
+  }
+}
+
+## Load Balancer
+resource "aws_lb_target_group" "target-group" {
+  name     = "target-group-${var.account_no}"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+  target_type = "ip"
+}
+
+resource "aws_lb_listener_rule" "alb-listener" {
+
+  listener_arn = var.listener_arn
+  priority     = 100
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target-group.arn
+  }
+
+  condition {
+    http_header {
+      http_header_name = "account_no"
+      values = [var.account_no]
+    }
   }
 }
