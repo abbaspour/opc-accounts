@@ -223,7 +223,7 @@ resource "aws_lb_target_group" "target-group" {
 resource "aws_lb_listener_rule" "alb-listener" {
 
   listener_arn = var.listener_arn
-  priority     = 100
+  priority     = var.account_no
 
   action {
     type             = "forward"
