@@ -223,7 +223,8 @@ resource "aws_lb_target_group" "target-group" {
 resource "aws_lb_listener_rule" "alb-listener" {
 
   listener_arn = var.listener_arn
-  priority     = var.account_no
+  # priority" must be in the range 1-50000 for normal rule or 99999 for default rule
+  priority     = var.account_no % 100000000
 
   action {
     type             = "forward"
