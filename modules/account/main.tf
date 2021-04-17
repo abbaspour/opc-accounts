@@ -162,7 +162,7 @@ resource "aws_ecs_service" "staging" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.target-group.arn
-    container_name   = "container-${var.account_no}"
+    container_name   = "opa-task-${var.account_no}"
     container_port   = 80
   }
 
