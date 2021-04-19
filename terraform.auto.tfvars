@@ -1,9 +1,9 @@
 policy_bucket = "opal-policy-dev"
-# ecs_cluster_subnets = ["subnet-069984fac42420950"] ## private
-ecs_cluster_subnets = ["subnet-0e4144530212f78f4"] ## nat
+ecs_cluster_subnets = ["subnet-0b89f5115650df28e"] ## private
+#ecs_cluster_subnets = ["subnet-0e4144530212f78f4"] ## nat
 ecs_sg_id = "sg-06825a066bf7505b7"
 discovery_ns_id = "ns-edm73qavjpzpaw4k"
 status_api_url = "https://9ms2c3v81c.execute-api.ap-southeast-2.amazonaws.com/dev"
 ecs_cluster_arn = "arn:aws:ecs:ap-southeast-2:377258293252:cluster/opa-ecs-cluster"
 vpc_id = "vpc-06c2afe6e06938cf1"
-listener_arn = "arn:aws:elasticloadbalancing:ap-southeast-2:377258293252:listener/app/OPA-smart-LB/5b4a2288ecbe300f/9e3640a90d21fc41"
+listener_arn = "arn:aws:elasticloadbalancing:ap-southeast-2:377258293252:listener/app/OPA-smart-LB/d7a5874b6ef4545e/d37e6d664a45c9ed"
