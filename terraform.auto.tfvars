@@ -1,7 +1,7 @@
 policy_bucket = "opal-policy-dev"
 ecs_cluster_subnets = ["subnet-0b89f5115650df28e"] ## private
 #ecs_cluster_subnets = ["subnet-0e4144530212f78f4"] ## nat
-ecs_sg_id = "sg-06825a066bf7505b7"
+ecs_sg_id = "sg-0c452bf91fd8cbe18"
 discovery_ns_id = "ns-edm73qavjpzpaw4k"
 status_api_url = "https://9ms2c3v81c.execute-api.ap-southeast-2.amazonaws.com/dev"
 ecs_cluster_arn = "arn:aws:ecs:ap-southeast-2:377258293252:cluster/opa-ecs-cluster"
