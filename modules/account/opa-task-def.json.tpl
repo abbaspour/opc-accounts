@@ -1,7 +1,7 @@
 [
   {
     "name": "opa-task-${account_no}",
-    "image": "377258293252.dkr.ecr.ap-southeast-2.amazonaws.com/myopa:${tag}",
+    "image": "openpolicyagent/opa:${tag}",
     "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",
