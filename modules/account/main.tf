@@ -104,6 +104,8 @@ data "template_file" "opa_app_task" {
     aws_region         = var.region
     s3_bucket          = var.policy_bucket
     status_api_url     = var.status_api_url
+    client_id          = var.client_id
+    client_secret      = var.client_secret
   }
 }
 

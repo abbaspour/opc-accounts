@@ -52,3 +52,12 @@ variable "s3_vpce_id" {
   type = string
   description = "vpc-endpoint-id"
 }
+
+variable "client_id" {
+  type = string
+}
+
+variable "client_secret" {
+  type = string
+  sensitive = true
+}
