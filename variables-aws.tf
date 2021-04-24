@@ -43,3 +43,8 @@ variable "listener_arn" {
   type = string
   description = "ALB listener arn"
 }
+
+variable "s3_vpce_id" {
+  type = string
+  description = "vpc-endpoint-id"
+}

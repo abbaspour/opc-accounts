@@ -10,4 +10,5 @@ module "account-100650547" {
   discovery_ns_id = var.discovery_ns_id
   vpc_id = var.vpc_id
   listener_arn = var.listener_arn
+  s3_vpce_id = var.s3_vpce_id
 }

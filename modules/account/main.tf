@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "s3_data_bucket_policy" {
     ]
     condition {
       test = "StringEquals"
-      values = [var.vpc_id]
+      values = [var.s3_vpce_id]
       variable = "aws:sourceVpce"
     }
   }

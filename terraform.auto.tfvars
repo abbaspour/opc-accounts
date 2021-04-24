@@ -7,3 +7,4 @@ status_api_url = "https://9ms2c3v81c.execute-api.ap-southeast-2.amazonaws.com/de
 ecs_cluster_arn = "arn:aws:ecs:ap-southeast-2:377258293252:cluster/opa-ecs-cluster"
 vpc_id = "vpc-06c2afe6e06938cf1"
 listener_arn = "arn:aws:elasticloadbalancing:ap-southeast-2:377258293252:listener/app/OPA-smart-LB/6a910f8fd5e57486/1a123b8192ad8fdb"
+s3_vpce_id = "vpce-01bd3ae5461c9c2b8"
