@@ -74,13 +74,11 @@ data "aws_iam_policy_document" "s3_data_bucket_policy" {
     resources = [
       "arn:aws:s3:::${var.policy_bucket}/${var.account_no}/*"
     ]
-/*
     condition {
-      test = "StringLike"
-      values = ["${var.account_no}/"]
-      variable = "s3:prefix"
+      test = "StringEquals"
+      values = [var.vpc_id]
+      variable = "aws:sourceVpce"
     }
-*/
   }
 }
 
