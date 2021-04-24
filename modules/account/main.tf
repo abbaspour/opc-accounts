@@ -72,9 +72,13 @@ data "aws_iam_policy_document" "s3_data_bucket_policy" {
       "s3:GetObject"
     ]
     resources = [
-      //"arn:aws:s3:::${var.policy_bucket}/${var.account_no}/*"
-      "arn:aws:s3:::${var.policy_bucket}/*" // TODO: fix prefix as `condition`. Optionally use username
+      "arn:aws:s3:::${var.policy_bucket}/*"
     ]
+    condition {
+      test = "StringLike"
+      values = ["${var.account_no}/"]
+      variable = "s3:prefix"
+    }
   }
 }
 
