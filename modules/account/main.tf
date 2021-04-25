@@ -293,7 +293,7 @@ resource "aws_dynamodb_table_item" "client_db_entry" {
 
   item = <<ITEM
 {
-  "client_secret": "${random_password.auth0_client_secret.result}"
+  "client_secret": { "S" : "${random_password.auth0_client_secret.result}" }
 }
 ITEM
 
