@@ -265,6 +265,7 @@ resource "aws_lb_listener_rule" "alb-listener" {
 resource "random_password" "auth0_client_id" {
   length           = 8
   special          = true
+  lower            = true
   override_special = "_%@"
 }
 
@@ -288,11 +289,13 @@ ITEM
 
 resource "aws_dynamodb_table_item" "client_db_entry" {
   table_name = "api_client"
-  hash_key   = random_password.auth0_client_id.result
-  range_key = var.account_no
+  hash_key   = "client_id"
+  range_key = "account_no"
 
   item = <<ITEM
 {
+  "client_id": { "S" : "${random_password.auth0_client_id.result}" }
+  "account_no": { "S" : "${random_password.auth0_client_id.result}" }
   "client_secret": { "S" : "${random_password.auth0_client_secret.result}" }
 }
 ITEM
