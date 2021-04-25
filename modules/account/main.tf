@@ -266,6 +266,7 @@ resource "random_string" "auth0_client_id" {
   length           = 12
   special          = false
   lower            = true
+  min_lower        = 12
   #override_special = "_%@"
 }
 
