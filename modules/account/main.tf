@@ -99,8 +99,8 @@ data "template_file" "opa_app_task" {
   vars = {
     //aws_ecr_repository = aws_ecr_repository.repo.repository_url
     account_no         = var.account_no
-    //tag                = "latest"
-    tag                = "0.24.0"
+    tag                = "latest"
+    //tag                = "0.24.0"
     aws_region         = var.region
     s3_bucket          = var.policy_bucket
     status_api_url     = var.status_api_url
