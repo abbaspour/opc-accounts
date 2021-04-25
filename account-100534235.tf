@@ -11,6 +11,4 @@ module "account-100534235" {
   vpc_id = var.vpc_id
   listener_arn = var.listener_arn
   s3_vpce_id = var.s3_vpce_id
-  client_id = "viep6er0ial4"
-  client_secret = "fah0us1ruSie"
 }

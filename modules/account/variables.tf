@@ -53,6 +53,7 @@ variable "s3_vpce_id" {
   description = "vpc-endpoint-id"
 }
 
+/*
 variable "client_id" {
   type = string
 }
@@ -61,6 +62,7 @@ variable "client_secret" {
   type = string
   sensitive = true
 }
+*/
 
 variable "m2m_scopes" {
   type = list(string)

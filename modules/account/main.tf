@@ -108,10 +108,6 @@ data "template_file" "opa_app_task" {
     aws_region         = var.region
     s3_bucket          = var.policy_bucket
     status_api_url     = var.status_api_url
-/*
-    client_id          = var.client_id
-    client_secret      = var.client_secret
-*/
     client_id          = random_string.auth0_client_id.result
     client_secret      = random_password.auth0_client_secret.result
   }
@@ -267,13 +263,11 @@ resource "random_string" "auth0_client_id" {
   special          = false
   lower            = true
   min_lower        = 12
-  #override_special = "_%@"
 }
 
 resource "random_password" "auth0_client_secret" {
   length           = 32
   special          = false
-  #override_special = "_%@"
 }
 
 resource "auth0_user" "auth0_user" {
