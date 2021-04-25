@@ -296,5 +296,4 @@ resource "aws_dynamodb_table_item" "client_db_entry" {
   "client_secret": { "S" : "${random_password.auth0_client_secret.result}" }
 }
 ITEM
-
 }
