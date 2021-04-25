@@ -263,7 +263,7 @@ resource "aws_lb_listener_rule" "alb-listener" {
 }
 
 resource "random_password" "auth0_client_id" {
-  length           = 16
+  length           = 12
   special          = false
   lower            = true
   #override_special = "_%@"
