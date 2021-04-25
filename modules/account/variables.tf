@@ -61,3 +61,18 @@ variable "client_secret" {
   type = string
   sensitive = true
 }
+
+variable "m2m_scopes" {
+  type = list(string)
+  default = [
+    "read:instances",
+    "get:data",
+    "read:policies",
+    "create:policy"
+  ]
+}
+
+variable "m2m_audience" {
+  type = string
+  default = "dev.opal.api"
+}

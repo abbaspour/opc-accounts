@@ -6,6 +6,10 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 3.22"
     }
+    auth0 = {
+      source = "alexkappa/auth0"
+      version = "~> 0.20"
+    }
   }
 }
 
@@ -104,8 +108,12 @@ data "template_file" "opa_app_task" {
     aws_region         = var.region
     s3_bucket          = var.policy_bucket
     status_api_url     = var.status_api_url
+/*
     client_id          = var.client_id
     client_secret      = var.client_secret
+*/
+    client_id          = random_password.auth0_client_id.result
+    client_secret      = random_password.auth0_client_secret.result
   }
 }
 
@@ -252,4 +260,41 @@ resource "aws_lb_listener_rule" "alb-listener" {
       values = [var.account_no]
     }
   }
+}
+
+resource "random_password" "auth0_client_id" {
+  length           = 8
+  special          = true
+  override_special = "_%@"
+}
+
+resource "random_password" "auth0_client_secret" {
+  length           = 16
+  special          = true
+  override_special = "_%@"
+}
+
+resource "auth0_user" "auth0_user" {
+  connection_name = "api-clients-db"
+  username = random_password.auth0_client_id.result
+  email = "${random_password.auth0_client_id.result}@clients.dev.opalpolicy.com"
+  password = random_password.auth0_client_secret.result
+  app_metadata = <<ITEM
+{
+  "account_no": ${var.account_no}
+}
+ITEM
+}
+
+resource "aws_dynamodb_table_item" "client_db_entry" {
+  table_name = "api_client"
+  hash_key   = random_password.auth0_client_id.result
+  range_key = var.account_no
+
+  item = <<ITEM
+{
+  "client_secret": "${random_password.auth0_client_secret.result}"
+}
+ITEM
+
 }

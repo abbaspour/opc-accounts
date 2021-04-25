@@ -1,3 +1,4 @@
+## AWS
 variable "region" {
   type = string
   description = "AWS region"
@@ -47,4 +48,26 @@ variable "listener_arn" {
 variable "s3_vpce_id" {
   type = string
   description = "vpc-endpoint-id"
+}
+
+## Auth0
+variable "auth0_domain" {
+  type = string
+  description = "auth0 domain"
+}
+
+variable "auth0_tf_client_id" {
+  type = string
+  description = "Auth0 TF provider client_id"
+}
+
+variable "auth0_tf_client_secret" {
+  type = string
+  description = "Auth0 TF provider client_secret"
+  sensitive = true
+}
+
+variable "api_audience" {
+  type = string
+  default = "dev.opal.api"
 }
