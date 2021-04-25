@@ -112,7 +112,7 @@ data "template_file" "opa_app_task" {
     client_id          = var.client_id
     client_secret      = var.client_secret
 */
-    client_id          = random_password.auth0_client_id.result
+    client_id          = random_string.auth0_client_id.result
     client_secret      = random_password.auth0_client_secret.result
   }
 }
@@ -262,7 +262,7 @@ resource "aws_lb_listener_rule" "alb-listener" {
   }
 }
 
-resource "random_password" "auth0_client_id" {
+resource "random_string" "auth0_client_id" {
   length           = 12
   special          = false
   lower            = true
@@ -277,8 +277,8 @@ resource "random_password" "auth0_client_secret" {
 
 resource "auth0_user" "auth0_user" {
   connection_name = "api-clients-db"
-  username = random_password.auth0_client_id.result
-  email = "${random_password.auth0_client_id.result}@clients.dev.opalpolicy.com"
+  username = random_string.auth0_client_id.result
+  email = "${random_string.auth0_client_id.result}@clients.dev.opalpolicy.com"
   password = random_password.auth0_client_secret.result
   app_metadata = <<ITEM
 {
@@ -294,7 +294,7 @@ resource "aws_dynamodb_table_item" "client_db_entry" {
 
   item = <<ITEM
 {
-  "client_id": { "S" : "${random_password.auth0_client_id.result}" },
+  "client_id": { "S" : "${random_string.auth0_client_id.result}" },
   "account_no": { "N" : "${var.account_no}" },
   "client_secret": { "S" : "${random_password.auth0_client_secret.result}" }
 }
