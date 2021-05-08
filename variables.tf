@@ -30,10 +30,12 @@ variable "ecs_sg_id" {
   description = "ECS security group id"
 }
 
+/*
 variable "discovery_ns_id" {
   type = string
   description = "Service discovery DNS namespace"
 }
+*/
 
 variable "vpc_id" {
   type = string
@@ -45,10 +47,12 @@ variable "listener_arn" {
   description = "ALB listener arn"
 }
 
+/*
 variable "s3_vpce_id" {
   type = string
   description = "vpc-endpoint-id"
 }
+*/
 
 ## Auth0
 variable "auth0_domain" {

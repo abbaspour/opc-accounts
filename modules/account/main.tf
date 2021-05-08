@@ -68,6 +68,7 @@ resource "aws_iam_role" "ecs_task_role" {
   assume_role_policy = data.aws_iam_policy_document.ecs_task_role.json
 }
 
+/*
 data "aws_iam_policy_document" "s3_data_bucket_policy" {
   statement {
     sid = "1"
@@ -95,6 +96,7 @@ resource "aws_iam_role_policy_attachment" "task_s3" {
   role       = aws_iam_role.ecs_task_role.name
   policy_arn = aws_iam_policy.s3_policy.arn
 }
+*/
 
 
 ## -- ECS Task --
@@ -177,9 +179,11 @@ resource "aws_ecs_service" "staging" {
     container_port   = 80
   }
 
+  /*
   service_registries {
     registry_arn = aws_service_discovery_service.service_discovery.arn
   }
+  */
 
   depends_on = [/*aws_lb_listener.https_forward,*/ aws_iam_role_policy_attachment.ecs_task_execution_role, aws_cloudwatch_log_group.log-group]
 
@@ -191,6 +195,7 @@ resource "aws_ecs_service" "staging" {
 }
 
 ## Discovery
+/*
 resource "aws_service_discovery_service" "service_discovery" {
   name = "lb${var.account_no}"
 
@@ -204,13 +209,8 @@ resource "aws_service_discovery_service" "service_discovery" {
 
     routing_policy = "MULTIVALUE"
   }
-
-  /*
-  health_check_custom_config {
-    failure_threshold = 1
-  }
-  */
 }
+*/
 
 ## Log
 resource "aws_cloudwatch_log_group" "log-group" {
