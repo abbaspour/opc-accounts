@@ -46,6 +46,11 @@ variable "auth0_domain" {
   description = "auth0 domain"
 }
 
+variable "auth0_canonical_domain" {
+  type = string
+  description = "auth0 canonical domain"
+}
+
 variable "auth0_tf_client_id" {
   type = string
   description = "Auth0 TF provider client_id"

@@ -10,3 +10,4 @@ listener_arn = "arn:aws:elasticloadbalancing:ap-southeast-2:377258293252:listene
 s3_vpce_id = "vpce-01bd3ae5461c9c2b8"
 
 auth0_domain = "id.openpolicy.cloud"
+auth0_canonical_domain = "openpolicycloud.us.auth0.com"
