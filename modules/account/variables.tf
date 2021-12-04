@@ -33,13 +33,6 @@ variable "ecs_sg_id" {
   description = "ECS security group id"
 }
 
-/*
-variable "discovery_ns_id" {
-  type = string
-  description = "Service discovery DNS namespace"
-}
-*/
-
 variable "vpc_id" {
   type = string
   description = "VPC id"
@@ -49,27 +42,3 @@ variable "listener_arn" {
   type = string
   description = "ALB listener arn"
 }
-
-/*
-variable "s3_vpce_id" {
-  type = string
-  description = "vpc-endpoint-id"
-}
-*/
-
-variable "m2m_scopes" {
-  type = list(string)
-  default = [
-    "read:instances",
-    "get:data",
-    "read:policies",
-    "create:policy"
-  ]
-}
-
-/*
-variable "m2m_audience" {
-  type = string
-  default = "dev.opal.api"
-}
-*/

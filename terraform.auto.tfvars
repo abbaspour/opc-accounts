@@ -9,6 +9,4 @@ vpc_id = "vpc-06c2afe6e06938cf1"
 listener_arn = "arn:aws:elasticloadbalancing:ap-southeast-2:377258293252:listener/app/OPA-smart-LB/6a910f8fd5e57486/1a123b8192ad8fdb"
 s3_vpce_id = "vpce-01bd3ae5461c9c2b8"
 
-auth0_domain = "opal-dev.au.auth0.com"
-auth0_tf_client_id = "don3m86oE6WgzztzCYz1yGYTUBAWHeZJ"
-auth0_tf_client_secret = "vDeZ8gxtUGLc32OJslR-qEzut40J6PtxIKFYCmDhzhz_RhUbavmlCiL40codznXX"
+auth0_domain = "id.openpolicy.cloud"

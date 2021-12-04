@@ -13,9 +13,9 @@
     },
     "entryPoint" : [
         "/opa", "run", "-s", "-a", ":80", "-l", "debug",
-        "--set", "services.gw.url=https://api.opalpolicy.com/repository",
+        "--set", "services.gw.url=https://api.openpolicy.cloud/repository",
         "--set", "services.gw.credentials.oauth2.grant_type=client_credentials",
-        "--set", "services.gw.credentials.oauth2.token_url=https://api.opalpolicy.com/runtime/token",
+        "--set", "services.gw.credentials.oauth2.token_url=https://api.openpolicy.cloud/runtime/token",
         "--set", "services.gw.credentials.oauth2.client_id=${client_id}",
         "--set", "services.gw.credentials.oauth2.client_secret=${client_secret}",
         "--set", "services.gw.allow_insecure_tls=true",

@@ -30,13 +30,6 @@ variable "ecs_sg_id" {
   description = "ECS security group id"
 }
 
-/*
-variable "discovery_ns_id" {
-  type = string
-  description = "Service discovery DNS namespace"
-}
-*/
-
 variable "vpc_id" {
   type = string
   description = "VPC id"
@@ -46,13 +39,6 @@ variable "listener_arn" {
   type = string
   description = "ALB listener arn"
 }
-
-/*
-variable "s3_vpce_id" {
-  type = string
-  description = "vpc-endpoint-id"
-}
-*/
 
 ## Auth0
 variable "auth0_domain" {
@@ -70,10 +56,3 @@ variable "auth0_tf_client_secret" {
   description = "Auth0 TF provider client_secret"
   sensitive = true
 }
-
-/*
-variable "api_audience" {
-  type = string
-  default = "dev.opal.api"
-}
-*/
