@@ -1,14 +1,14 @@
 terraform {
-  required_version = ">= 0.14"
+  required_version = "~> 1.0"
 
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.22"
+      version = ">= 3.39"
     }
     auth0 = {
       source = "alexkappa/auth0"
-      version = "~> 0.20"
+      version = "~> 0.21"
     }
   }
 }
@@ -273,7 +273,7 @@ resource "random_password" "auth0_client_secret" {
 resource "auth0_user" "auth0_user" {
   connection_name = "api-clients-db"
   username = random_string.auth0_client_id.result
-  email = "${random_string.auth0_client_id.result}@clients.dev.opalpolicy.com"
+  email = "${random_string.auth0_client_id.result}@clients.openpolicy.cloud"
   password = random_password.auth0_client_secret.result
   app_metadata = <<ITEM
 {

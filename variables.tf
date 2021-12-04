@@ -71,7 +71,9 @@ variable "auth0_tf_client_secret" {
   sensitive = true
 }
 
+/*
 variable "api_audience" {
   type = string
   default = "dev.opal.api"
 }
+*/

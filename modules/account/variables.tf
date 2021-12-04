@@ -67,7 +67,9 @@ variable "m2m_scopes" {
   ]
 }
 
+/*
 variable "m2m_audience" {
   type = string
   default = "dev.opal.api"
 }
+*/
