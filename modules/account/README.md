@@ -1,6 +1,6 @@
 # Account Terraform Module
 
-Provision AWS infrastructure for a new Opal account
+Provision AWS infrastructure for a new OPC account
 
  - [ ] IAM roles
  - [ ] S3 empty policy bundle

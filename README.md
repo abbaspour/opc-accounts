@@ -7,8 +7,6 @@ Terraform Cloud VCS integration to provision accounts infra
 * [opc-backend](https://github.com/abbaspour/opc-backend)
 * [opc-accounts](https://github.com/abbaspour/opc-accounts)
 
-# opal-accounts
-
 ## Todo
 - [ ] multiple versions of account module
 - [ ] support OPA runtime version as argument
